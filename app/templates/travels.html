@@ -1,0 +1,66 @@
+    {% extends "base.html" %}
+    {% block body %}
+<section class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=1500 data-natural-height=603 data-position-y=center>    
+    <div class="overlay"></div>
+        <div class="row home-content__main">
+
+        <form action="/travels" method="POST" class="row">
+            <div class="col-three">
+                <label for="date" 
+                style="
+                color: #828282;
+                font-family: 'montserrat-light', sans-serif;
+                font-size: 1.4rem;
+                max-width: 100%;
+                background: transparent;
+                ">Date</label>
+                <input type="date" name="date" placeholder="Date" id="date" class="full-width">
+            </div>
+            <div class="col-three">
+                <input type="number" name="duration" placeholder="Duration" id="duration" class="full-width">
+            </div>
+            <div class="col-three">
+                <input type="text" name="destination" placeholder="Destination" id="destination" class="full-width">
+            </div>
+            <div class="col-three">
+                <input type="submit" name="submit" value="add">
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert-box alert-box--success hideit">
+            <p>{{ messages[0] }}</p>
+            <i class="fa fa-times alert-box__close" aria-hidden="true"></i>
+        </div>
+        {% endif %}
+        {% endwith %}
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Date</td>
+                    <td>Duration</td>
+                    <td>Destination</td>
+                    <td>Emplyees Number</td>
+                    <td colspan="2">Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for travel in travels %}
+
+                <tr>
+                    <td>{{ travel['travels'].id }}</td>
+                    <td>{{ travel['travels'].date }}</td>
+                    <td>{{ travel['travels'].duration }}</td>
+                    <td>{{ travel['travels'].destination }}</td>
+                    <td>{{ travel['employees_number'] }}</td>
+                    <td><a href="?delete={{ travel['travels'].id }}">Delete</a></td>
+                    <td><a href="travels/{{ travel['travels'].id }}">Add Employee</a></td>
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

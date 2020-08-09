@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=1500 data-natural-height=603 data-position-y=center>
+    <div class="overlay"></div>
+    <div class="shadow-overlay"></div>
+
+    <div class="home-content contact-content">
+
+        <div class="row home-content__main">
+            <div class="col-six">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="alert-box alert-box--success hideit"> 
+                    <p>{{ messages[0] }}</p>
+                    <i class="fa fa-times alert-box__close" aria-hidden="true"></i>
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <form action="/" method="POST">
+                    {% if session['chechin'] %}
+                    <button type="submit" name="check">check out</button>
+                    {% else %}
+                    <button type="submit" name="check">check in </button>
+                    {% endif %}
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

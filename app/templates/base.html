@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--[if lt IE 9 ]><html class="no-js oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>DXC</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/suggestions.css') }}">
+
+    <!-- script
+    ================================================== -->
+    <script src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pace.min.js') }}"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- style
+    <style type="text/css" media="screen">
+        .s-styles { 
+            background: white;
+            padding-top: 15rem;
+            padding-bottom: 12rem;
+        }
+     </style>
+     ================================================== -->
+</head>
+
+<body id="top">
+
+    <!-- header
+    ================================================== -->
+    <header class="s-header">
+
+        <div class="header-logo">
+            <a class="site-logo" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/logo-tr.png') }}" alt="Homepage">
+            </a>
+        </div>
+
+        <nav class="header-nav">
+
+            <a href="#0" class="header-nav__close" title="close"><span>Close</span></a>
+
+            <div class="header-nav__content">
+                <h3>Navigation</h3>
+                
+                <ul class="header-nav__list">
+                    {% if current_user.is_authenticated %}
+    
+                    <li class="current"><a  href="/index">Home</a></li>
+                
+                    {% if current_user.get_role() == 4 %}
+                    
+                    <li><a  href="/ML">ML & Predict</a></li>
+                    <li><a  href="/manage_users">Users</a></li>
+                
+                    <li><a  href="/hr">New Employee</a></li>
+                    <li><a  href="/newManager">Change Manager</a></li>
+                    <li><a  href="/newPromotion">Promote an Employee</a></li>
+                    <li><a  href="/travels">Business Travels</a></li>
+                    <li><a  href="/trainings">Training Sessions</a></li>
+                    <li><a  href="/projects">Project</a><br>
+                    
+                    {% elif current_user.get_role() == 3 %}
+                
+                    <li><a  href="/hr">New Employee</a></li>
+                    <li><a  href="/newManager">Change Manager</a></li>
+                    <li><a  href="/newPromotion">Promote an Employee</a></li>
+                    <li><a  href="/travels">Business Travels</a></li>
+                    <li><a  href="/trainings">Training Sessions</a></li>
+                
+                    {% elif current_user.get_role() == 2 %}
+                
+                    <li><a  href="/hr">New Employee</a></li>
+                    <li><a  href="/newManager">Change Manager</a></li>
+                    <li><a  href="/newPromotion">Promote an Employee</a></li>
+                    <li><a  href="/travels">Business Travels</a></li>
+                    <li><a  href="/trainings">Training Sessions</a></li>
+                    <li><a  href="/projects">Project</a></li>
+                
+                    {% elif current_user.get_role() == 1 %}
+                
+                    <li><a  href="/projects">Project</a></li>
+                
+                    {% endif %}
+                
+                    <li><a  href="/profile">Profile</a></li>
+                
+                    <li><a  href="/logout">Logout</a></li>
+                
+                    {% endif %}
+                </ul>
+
+            </div> <!-- end header-nav__content -->
+
+        </nav>  <!-- end header-nav -->
+
+        <a class="header-menu-toggle" href="#0">
+            <span class="header-menu-text">Menu</span>
+            <span class="header-menu-icon"></span>
+        </a>
+
+    </header> <!-- end s-header -->
+
+    {% block body %}
+    
+    {% endblock %}
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts/jquery-1.8.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts/jquery.mockjax.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts/jquery.autocomplete.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts/demo.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block body %}
+<section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=1500 data-natural-height=603 data-position-y=center>
+
+    <div class="overlay"></div>
+    <div class="shadow-overlay"></div>
+
+    <div class="home-content contact-content">
+
+        <div class="row home-content__main">
+
+            <h3>Add new Employee</h3>
+            <div class="row contact-content">
+
+            <form action="newEmployee" style="padding: 0 5rem; margin-top: -1.5rem" method="POST">
+
+
+                <div class="row">
+                    <div class="col-six">
+                        <label for="email"> Email</label>
+                        <input type="email" name="email" id="email" class="full-width">
+                        
+                        <label for="first_name"> First name </label>
+                        <input type="text" name="first_name" id="first_name" class="full-width">
+                        
+                        <label for="second_name"> Second name</label> 
+                        <input type="text" name="second_name" id="second_name" class="full-width">
+                        
+                        <label for="birthday"> birthday</label>
+                        <input type="date" name="birthday" id="birthday" class="full-width">
+                        
+                        <label for="gender"> Gender</label>
+                        <div class="cl-custom-select">
+                            <select name="gender" id="gender" class="full-width">
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
+                        </div>
+
+                        <label for="marital_status"> Marital status</label>
+                        <div class="cl-custom-select">
+                            <select name="marital_status" id="marital_status" class="full-width">
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    
+                    <div class="col-six">
+                        <label for="education"> Education level</label>
+                        <div class="cl-custom-select">
+                            <select name="education" id="education" class="full-width">
+                                <option value="1">Bac</option>
+                                <option value="2">Bac +2</option>
+                                <option value="3">Bac +3</option>
+                                <option value="4">Bac +4/5</option>
+                                <option value="5">sup à Bac +6</option>
+                            </select>
+                        </div>
+
+                        <label for="education_field"> Education field</label>
+                        <div class="cl-custom-select">
+                            <select name="education_field" id="education_field" class="full-width">
+                                {% for educ in educfields %}
+                                <option value="{{ educ }}">{{ educ }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <label for="companies_number"> Companies number</label>
+                        <input type="number" name="companies_number" id="companies_number" class="full-width">
+                        
+                        <label for="employement_date"> Employement date</label>
+                        <input type="date" name="employement_date" id="employement_date" class="full-width">
+                        
+                        <label for="first_employement_date"> First employement date</label>
+                        <input type="date" name="first_employement_date" id="first_employement_date" class="full-width">
+                        
+                    </div>
+                </div>
+                <input class="btn--primary" type="submit" value="Submit">
+            </form>
+        </div>
+
+        </div>
+
+        <div class="home-content__line"></div>
+
+    </div>
+
+</section>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block body %}
+<section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=1500 data-natural-height=603 data-position-y=center>
+
+    <div class="overlay"></div>
+    <div class="shadow-overlay"></div>
+
+    <div class="home-content contact-content">
+
+        <div class="row home-content__main">
+
+            <h3>Add new Employee</h3>
+            <div class="row contact-content">
+
+            <form style="padding: 0 5rem; margin-top: -1.5rem" method="POST">
+
+                <div class="row">
+                    <label for="privilege">Privilege</label>
+                    <div class="cl-custom-select">
+                        <select name="privilege" id="privilege" class="full-width">
+                            {% if current_user.role %}
+                            {% set l3iba = current_user.role|int %}
+                            <option value="{{ current_user.role }}" selected>{{ Roles[l3iba] }}</option>
+                            {% endif %}
+                            {% for Role in Roles %}
+                            <option value="{{ Role }}">{{ Roles[Role] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <label for="role">Role</label>
+                    <div class="cl-custom-select">
+                        <select name="role" id="role" class="full-width">
+                            {% if employee %}
+                            {% set l3iba = ['Sales Executive', 'Research Scientist', 'Laboratory Technician', 'Manufacturing Director', 'Healthcare Representative', 'Manager', 'Sales Representative', 'Research Director', 'Human Resources'] %}
+                            <option value="{{ employee.role }}" selected>{{ Roles[l3iba] }}</option>
+                            {% endif %}
+                            {% for Role in Roles %}
+                            <option value="{{ Role }}">{{ Roles[Role] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    {% set departements = ['Sales', 'Research & Development', 'Human Resources']  %}
+                    <label for="departement">Departement</label>
+                    <div class="cl-custom-select">
+                        <select name="departement" id="departement" class="full-width">
+                            {% if employee %} 
+                            <option value="{{ employee.level }}" selected>{{ employee.level }}</option>
+                            {% endif %}
+                            {% for departement in departements %}
+                            <option value="{{ departement }}">{{ departement }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date" class="full-width">
+
+                    <label for="salary">Salary</label>
+                    <input type="number" name="salary" id="salary" value="{% if employee %} {{ employee.salary }} {% endif %}" class="full-width">
+
+                    <label for="level">Level</label>
+                    <div class="cl-custom-select">
+                        <select name="level" id="level" class="full-width">
+                            {% if employee %} 
+                            <option value="{{ employee.level }}" selected>{{ employee.level }}</option>
+                            {% endif %}
+                            {% for Level in range(1, 6) %}
+                            <option value="{{ Level }}">{{ Level }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <label for="standard_hours">Standard Hours</label>
+                    <input type="number" name="standard_hours" id="standard_hours" value="{% if employee %} {{ employee.salary }} {% endif %}" class="full-width">
+                    
+                </div>
+                <input class="btn--primary" type="submit" value="Promote">
+            </form>
+        </div>
+
+        </div>
+
+        <div class="home-content__line"></div>
+
+    </div>
+
+</section>
+{% endblock %}

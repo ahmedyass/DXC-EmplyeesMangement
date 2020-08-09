@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block body %}
+<section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=1500 data-natural-height=603 data-position-y=center>
+
+    <div class="overlay"></div>
+    <div class="shadow-overlay"></div>
+
+    <div class="home-content contact-content">
+
+        <div class="row home-content__main">
+
+            <h3>Select An Employee</h3>
+            <div class="row contact-content">
+        
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert-box alert-box--success hideit">
+                <p>{{ messages[0] }}</p>
+                <i class="fa fa-times alert-box__close" aria-hidden="true"></i>
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <form action="newPromotion" style="padding: 0 5rem; margin-top: -1.5rem" method="POST">
+
+                <div class="row">
+                    <div style="position: relative; height: 80px;">
+                        <input type="text" name="employee_id" id="autocomplete-ajax" placeholder="Employee Name" value="" minlength="2" required="" aria-required="true" class="full-width" style="position: absolute;">
+                        <input type="text" name="employee_id" id="autocomplete-ajax-x" value="" minlength="2" required="" aria-required="true" disabled="disabled" class="dis" style="position: absolute;">
+                    </div>
+                </div>
+                <input class="btn--primary" type="submit" value="Promote">
+            </form>
+        </div>
+
+        </div>
+
+        <div class="home-content__line"></div>
+
+    </div>
+
+</section>
+
+<script>
+    var employees = {
+        {% if all %}
+        "{{ all[0].id }}" : "{{ all[0].id ~ ' ' + all[0].first_name + ' ' + all[0].second_name }}"
+        {% for emp in all[1:] %}
+        ,
+        "{{ emp.id }}" : "{{ emp.id ~ ' ' +  emp.first_name + ' ' + emp.second_name }}"
+        {% endfor %}
+        {% endif %}
+    }
+    console.log(employees)
+</script>
+{% endblock %}

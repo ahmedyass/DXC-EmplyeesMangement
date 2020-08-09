@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<form action="/signup" method="POST">
+
+    <label for="email">email</label>
+    <input type="email" name="email" id="email"><br>
+    <label for="password">password</label>
+    <input type="password" name="password" id="password"><br>
+    <label for="role">role</label>
+    <select name="role" id="role">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+
+    <input type="submit">
+</form>
+
+{% endblock %}

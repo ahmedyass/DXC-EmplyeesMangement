@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=1500 data-natural-height=603 data-position-y=center>    
+    <div class="overlay"></div>
+    <div class="row home-content__main">
+        <form method="POST" class="row">
+            <div class="col-six">
+                <div style="position: relative; height: 80px;">
+                    <input type="text" name="employee_id" id="autocomplete-ajax" placeholder="Employee Name" value="" minlength="2" required="" aria-required="true" class="full-width" style="position: absolute;">
+                    <input type="text" name="employee_id" id="autocomplete-ajax-x" value="" minlength="2" required="" aria-required="true" disabled="disabled" class="dis" style="position: absolute;">
+                </div>
+            </div>
+            
+            <div class="col-six">
+                <input type="submit" value="add">
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert-box alert-box--success hideit">
+            <p>{{ messages[0] }}</p>
+            <i class="fa fa-times alert-box__close" aria-hidden="true"></i>
+        </div>
+        {% endif %}
+        {% endwith %}
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>First name</td>
+                    <td>Second name</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for travel in travels %}
+
+                <tr>
+                    <td>{{ travel['employee'].id }}</td>
+                    <td>{{ travel['employee'].first_name }}</td>
+                    <td>{{ travel['employee'].second_name }}</td>
+                    <td>
+                        <a href="?delete={{ travel['travel'].id }}">delete</a>
+                    </td>
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    var employees = {
+        {% if all %}
+        "{{ all[0].id }}" : "{{ all[0].id ~ ' ' + all[0].first_name + ' ' + all[0].second_name }}"
+        {% for emp in all[1:] %}
+        ,
+        "{{ emp.id }}" : "{{ emp.id ~ ' ' +  emp.first_name + ' ' + emp.second_name }}"
+        {% endfor %}
+        {% endif %}
+    }
+    console.log(employees)
+</script>
+{% endblock %}
