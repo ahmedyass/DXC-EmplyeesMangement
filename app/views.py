@@ -13,10 +13,6 @@ from flask_bcrypt   import Bcrypt
 from flask_mail     import Mail, Message
 from flask_login    import LoginManager, current_user, login_user, logout_user, login_required
 
-"""
-Message lia hada , don't forget to remove your password from config before uploading the app 
-
-"""
 
 bcrypt      = Bcrypt(app)
 mail        = Mail(app)
